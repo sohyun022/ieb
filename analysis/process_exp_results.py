@@ -33,7 +33,7 @@ def get_experiment_configs():
     parser.add_argument(
         "--model_id",
         type=str,
-        choices=['', 'llama-70b', 'mistral', 'qwen'],
+        choices=['llama-8b', 'llama-70b', 'mistral', 'qwen'],
         default=''
     )
     parser.add_argument(
@@ -77,10 +77,7 @@ def get_pred_df(args):
     elif args.group_option == 'nationality':
         tot_batch = 10
 
-    if args.model_id != '':
-        folder = f'../results/exp_{args.model_id}'
-    else:
-        folder = f'../results/exp'
+    folder = f'../results/exp_{args.model_id}'
 
     df_list = []
     for bid in tqdm(range(tot_batch)):

@@ -6,7 +6,7 @@ from matplotlib.pyplot import figure
 from tqdm import tqdm
 from scipy import stats
 
-model_id_list = ['', 'llama-70b', 'mistral', 'qwen']
+model_id_list = ['llama-8b', 'llama-70b', 'mistral', 'qwen']
 group_option_list = ['ethnicity', 'nationality', 'religion']
 prompt_variation_list = ['origin', 'persona-1', 'persona-2', 'persona-3', '10-scale', '1-person', '3-person']
 
