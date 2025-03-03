@@ -16,6 +16,6 @@ We perform an in-depth analysis on Llama-3.1-8B, the model which exhibited stron
 
 ## Code
 
-We provide the code for the emotion intensity prediction tasks and analysis, with [prompts](https://drive.google.com/drive/folders/1HiqAwzdoFsjTbn9wPWMb0JOw3_5FM6tR?usp=sharing) and experiment results.
+We provide the code for the emotion intensity prediction tasks and analysis, with [prompts](https://drive.google.com/drive/folders/1HiqAwzdoFsjTbn9wPWMb0JOw3_5FM6tR?usp=sharing) and experiment [results](https://drive.google.com/drive/folders/1Ivwr43_Pz00Wlwl6e_HZU8vPlQzlzsER?usp=sharing).
 
 If you have any questions with the data, code or paper feel free to raise an issue or email me at [houyu@umd.edu](mailto:houyu@umd.edu). Thank you!
