@@ -1,6 +1,6 @@
 # Studying *Intergroup Empathy Bias* in LLMs
 
-This repository contains the code and data for our NAACL 2025 paper: **Language Models Predict Empathy Gaps Between Social In-groups and Out-groups**
+This repository contains the code and data for our NAACL 2025 paper: [**Language Models Predict Empathy Gaps Between Social In-groups and Out-groups**](https://arxiv.org/abs/2503.01030)
 
 ## Abstract
 
