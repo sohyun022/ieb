@@ -4,7 +4,7 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
-from const import crowd_enVent_emotions, group_mappings, get_prompt_pair
+from const import crowd_enVent_emotions, group_mappings, get_prompt_pair, personas, experiencers
 
 
 def get_experiment_configs():
@@ -26,7 +26,7 @@ def get_experiment_configs():
         "--group_option",
         type=str,
         #choices=['ethnicity', 'nationality', 'religion']
-        choices=['nationality']
+        choices=['fan']
     )
     parser.add_argument(
         "--prompt_variation",
@@ -67,8 +67,8 @@ def read_all_data(prompt_variation='origin'):
             'emotion_list': concat_df['emotion']}
 
 
-def prepare_prompts(data, prompt_variation, group_option):
-    persona_group = group_mappings[group_option] + ['a person']
+def prepare_prompts(data, prompt_variation, group_option,personas, experiencers):
+    persona_group =  + ['a person']
     system_prompt, user_input = get_prompt_pair(prompt_variation)
 
     # idx, persona, experiencer, emotion, oid, text, system_prompt, user_input
@@ -82,8 +82,8 @@ def prepare_prompts(data, prompt_variation, group_option):
     user_input_list = []
 
     idx = 0
-    for persona in tqdm(persona_group):
-        for experiencer in persona_group:
+    for persona in tqdm(personas):
+        for experiencer in experiencers:
             for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
                 idx_list.append(idx)
                 persona_list.append(persona)
@@ -191,8 +191,8 @@ def main(args):
     print(f'{args.group_option}_{args.prompt_variation}')
 
     # Read data and prepare prompts
-    # data = read_all_data(args.prompt_variation)
-    # prepare_prompts(data, args.prompt_variation, args.group_option)
+    data = read_all_data(args.prompt_variation)
+    prepare_prompts(data, args.prompt_variation, args.group_option,personas, experiencers)
 
     # Read prompts and model inference
     prompt_folder = 'prompts'
