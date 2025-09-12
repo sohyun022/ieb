@@ -25,7 +25,8 @@ def get_experiment_configs():
     parser.add_argument(
         "--group_option",
         type=str,
-        choices=['ethnicity', 'nationality', 'religion']
+        #choices=['ethnicity', 'nationality', 'religion']
+        choices=['nationality']
     )
     parser.add_argument(
         "--prompt_variation",

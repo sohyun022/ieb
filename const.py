@@ -1,26 +1,35 @@
 # https://github.com/GIEBench/GIEBench
 country_list = [
-    "China", "Japan",
-    "India", "Pakistan",
-    "Myanmar", "the Philippines",
-    "Iran", "Israel", "Palestine",
-    "Russia", "Ukraine",
-    "Germany", "France", "the United Kingdom",
-    "Nigeria", "Egypt",
-    "the United States", "Canada", "Mexico",
-    "Brazil", "Argentina",
+    "China", "Japan", "South Korea", "North Korea", # East Asia
+    "Vietnam", "Thailand", "Indonesia", "the Philippines", # Southeast Asia
+    "Germany", "France", "the United Kingdom", # Europe
+    "the United States", "Mexico", "Canada", # America
 ]
+#country_list = [
+#    "China", "Japan",
+#    "India", "Pakistan",
+#    "Myanmar", "the Philippines",
+#    "Iran", "Israel", "Palestine",
+#    "Russia", "Ukraine",
+#    "Germany", "France", "the United Kingdom",
+#    "Nigeria", "Egypt",
+#    "the United States", "Canada", "Mexico",
+#    "Brazil", "Argentina",
+#]
 
 group_mappings = {
-    "religion": ["a Christian", "a Muslim", "a Jew", "a Buddhist", "a Hindu"],
-    "ethnicity": [
-        "a white person", "a White person", "a Caucasian", "a White American", "a European American",
-        "a black person", "a Black person", "an African American", "a Black American",
-        "an Asian person", "an Asian American", "an Asian",
-        "a Hispanic person", "a Hispanic American", "a Latino American", "a Latino", "a Latina", "a Latinx"
-    ],
-    "nationality": [f"a person from {country}" for country in country_list1],
+    "nationality": [f"a person from {country}" for country in country_list],
 }
+#group_mappings = {
+#    "religion": ["a Christian", "a Muslim", "a Jew", "a Buddhist", "a Hindu"],
+#    "ethnicity": [
+#        "a white person", "a White person", "a Caucasian", "a White American", "a European American",
+#        "a black person", "a Black person", "an African American", "a Black American",
+#        "an Asian person", "an Asian American", "an Asian",
+#        "a Hispanic person", "a Hispanic American", "a Latino American", "a Latino", "a Latina", "a Latinx"
+#    ],
+#    "nationality": [f"a person from {country}" for country in country_list],
+#}
 
 crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
                          'joy', 'pride', 'trust', 'relief', 'surprise']
