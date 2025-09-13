@@ -18,7 +18,8 @@ country_list = [
 #]
 
 personas = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
-experiencers = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
+#experiencers = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
+experiencers = ["a Person","a person from South Korea","a person from Japan", "a person from United Kingdom", "a person from United States"]
 
 #experiencers = [
 #    "a Person",
