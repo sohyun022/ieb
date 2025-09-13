@@ -68,7 +68,6 @@ def read_all_data(prompt_variation='origin'):
 
 
 def prepare_prompts(data, prompt_variation, group_option,personas, experiencers):
-    persona_group =  + ['a person']
     system_prompt, user_input = get_prompt_pair(prompt_variation)
 
     # idx, persona, experiencer, emotion, oid, text, system_prompt, user_input
@@ -112,7 +111,7 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
     }).to_csv(f"{prompt_folder}/{group_option}_{prompt_variation}.tsv", sep='\t', index=False)
 
 
-def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list, exp_id, group_option, prompt_variation, bid, limit=6050*50):
+def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,persona_list,experinecer_list, exp_id, group_option, prompt_variation, bid, limit=6050*50):
     from vllm import LLM, SamplingParams
 
     # max_model_len = prompt length + output token length
@@ -179,6 +178,8 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list, exp
 
     return pd.DataFrame({
         'idx': idx_list,
+        'persona' : persona_list[limit_arr[bid]:limit_arr[bid+1]],
+        'experiencer' : experinecer_list[limit_arr[bid]:limit_arr[bid+1]],
         'system_prompt': system_prompts_set,
         'user_input': user_inputs_set,
         'response': [outputs[idx].outputs[0].text for idx in range(len(idx_list))]
@@ -199,7 +200,7 @@ def main(args):
     read_prompts = pd.read_csv(
         f"{prompt_folder}/{args.group_option}_{args.prompt_variation}.tsv", sep='\t')
     vllm_inference(args.model_name_hf, read_prompts['system_prompt'], read_prompts['user_input'],
-                   read_prompts['idx'],
+                   read_prompts['idx'], read_prompts['persona'], read_prompts['experiencer'],
                    args.exp_id, args.group_option, args.prompt_variation, args.batch_id)
 
     elapsed_time = time.time() - start_time
