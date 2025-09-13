@@ -17,24 +17,26 @@ country_list = [
 #    "Brazil", "Argentina",
 #]
 
-personas = ["a Person","a Person from South Korea","a K-pop Fan from South Korea"]
-experiencers = [
-    "a Person",
-    "a Person from South Korea",
-    "a Person from Japan",
-    "a Person from China",
-    "a Person from United States",
-    "a Person from United Kingdom",
-    "a Person from Austrailia",
-    "a Person from Germany",
-    "a Person from Indonesia",
-    "a Person from Mexico",
-    "a Person from North Korea"
-    ]
+personas = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
+experiencers = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
 
-group_mappings = {
-    "fan": [f"a K-pop fan from {country}" for country in country_list],
-}
+#experiencers = [
+#    "a Person",
+#    "a Person from South Korea",
+#    "a Person from Japan",
+#    "a Person from China",
+#    "a Person from United States",
+#    "a Person from United Kingdom",
+#    "a Person from Austrailia",
+#    "a Person from Germany",
+#    "a Person from Indonesia",
+#    "a Person from Mexico",
+#    "a Person from North Korea"
+#    ]
+
+#group_mappings = {
+#    "fan": [f"a K-pop fan from {country}" for country in country_list],
+#}
 #group_mappings = {
 #    "religion": ["a Christian", "a Muslim", "a Jew", "a Buddhist", "a Hindu"],
 #    "ethnicity": [

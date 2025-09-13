@@ -4,7 +4,7 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
-from const import crowd_enVent_emotions, group_mappings, get_prompt_pair, personas, experiencers
+from const import crowd_enVent_emotions, get_prompt_pair, personas, experiencers
 
 
 def get_experiment_configs():
