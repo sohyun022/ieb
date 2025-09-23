@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.tmp
+*.log
+
+# VCS
+.git
+.gitignore
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Caches
+.cache/
+.huggingface/
+root/.cache/
+
+# Data and outputs (mounted or produced at runtime)
+prompts/
+processed_results/
+figures/
+results/
+
+# OS files
+.DS_Store
+

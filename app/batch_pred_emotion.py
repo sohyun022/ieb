@@ -50,7 +50,7 @@ def read_all_data(prompt_variation='origin'):
     df_list = []
     for emotion in crowd_enVent_emotions:
         df = pd.read_csv(
-            'data/crowd-enVent_{}.tsv'.format(emotion), sep='\t')
+            '/app/dataset/data/crowd-enVent_{}.tsv'.format(emotion), sep='\t')
         df_list.append(df)
     concat_df = pd.concat(df_list, sort=False)
 
