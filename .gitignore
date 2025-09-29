@@ -1,5 +1,9 @@
 prompts/
 results/
+test_run/
+hf_models/
+merged_results/
+results/
 .DS_Store
 
 .env

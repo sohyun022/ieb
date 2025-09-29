@@ -45,7 +45,6 @@ def get_experiment_configs():
     args = parser.parse_args()
     return args
 
-
 def read_all_data(prompt_variation='origin'):
     df_list = []
     for emotion in crowd_enVent_emotions:
@@ -124,7 +123,7 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,pers
             seed=0,
             model=model_name,
             download_dir=os.environ['HF_HOME'],
-            tensor_parallel_size=8,
+            tensor_parallel_size=4,
             # gpu_memory_utilization=0.9,
             max_num_batched_tokens=512*10,
             max_model_len=512*10
@@ -134,6 +133,9 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,pers
             seed=0,
             model=model_name,
             download_dir=os.environ['HF_HOME'],
+            gpu_memory_utilization=0.8,
+            tensor_parallel_size=4,
+            max_model_len=2048
         )
 
     tokenizer = model.get_tokenizer()
