@@ -1,7 +1,6 @@
 import os
 from huggingface_hub import snapshot_download
 
-# 네 로컬 경로로 바꿔라 (절대경로 사용 권장)
 MODEL_BASE = os.path.expanduser("~/paper_repo/hf_models")
 
 # 디렉토리 만들기 (존재하면 무시)

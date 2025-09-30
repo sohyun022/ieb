@@ -1,9 +1,13 @@
 prompts/
 results/
 test_run/
+no-persona-foreign/
+no-persona-korean/
+test_run_*/
 hf_models/
 merged_results/
 results/
+.ipynb_checkpoints/
 .DS_Store
 
 .env

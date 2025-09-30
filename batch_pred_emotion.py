@@ -13,6 +13,7 @@ def get_experiment_configs():
         "--model_name_hf",
         type=str,
         choices=['meta-llama/Meta-Llama-3.1-8B-Instruct',
+                 'LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct',
                  'meta-llama/Meta-Llama-3.1-70B-Instruct',
                  'mistralai/Mistral-7B-Instruct-v0.3',
                  'Qwen/Qwen2-7B-Instruct']
@@ -26,7 +27,7 @@ def get_experiment_configs():
         "--group_option",
         type=str,
         #choices=['ethnicity', 'nationality', 'religion']
-        choices=['fan']
+        choices=['fan','none']
     )
     parser.add_argument(
         "--prompt_variation",
@@ -34,7 +35,9 @@ def get_experiment_configs():
         choices=['origin',
                  'persona-1', 'persona-2', 'persona-3',
                  '1-person', '3-person',
-                 '10-scale']
+                 '10-scale',
+                 'no-persona'
+                 ]
     )
     parser.add_argument(
         "--batch_id",
@@ -80,22 +83,39 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
     user_input_list = []
 
     idx = 0
-    for persona in tqdm(personas):
+    
+    if prompt_variation == "no-persona":
+        # ✅ 페르소나 없는 조건 → 루프는 experiencer만 사용
         for experiencer in experiencers:
             for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
                 idx_list.append(idx)
-                persona_list.append(persona)
+                persona_list.append("None")   # persona 없음
                 experiencer_list.append(experiencer)
                 emotion_list.append(emotion)
                 oid_list.append(oid)
                 text_list.append(text)
-                system_prompt_list.append(
-                    system_prompt.format(persona=persona))
+                system_prompt_list.append(system_prompt)  # persona 포맷팅 필요 없음
                 user_input_list.append(user_input.format(
                     experiencer=experiencer, sent=text, emotion=emotion))
                 idx += 1
+    else:
+        # ✅ 기존 방식 유지
+        for persona in personas:
+            for experiencer in experiencers:
+                for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
+                    idx_list.append(idx)
+                    persona_list.append(persona)
+                    experiencer_list.append(experiencer)
+                    emotion_list.append(emotion)
+                    oid_list.append(oid)
+                    text_list.append(text)
+                    system_prompt_list.append(system_prompt.format(persona=persona))
+                    user_input_list.append(user_input.format(
+                        experiencer=experiencer, sent=text, emotion=emotion))
+                    idx += 1
 
     prompt_folder = 'prompts'
+
     os.makedirs(prompt_folder, exist_ok=True)
 
     return pd.DataFrame({
@@ -135,7 +155,8 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,pers
             download_dir=os.environ['HF_HOME'],
             gpu_memory_utilization=0.8,
             tensor_parallel_size=4,
-            max_model_len=2048
+            max_model_len=2048,
+            trust_remote_code=True
         )
 
     tokenizer = model.get_tokenizer()
