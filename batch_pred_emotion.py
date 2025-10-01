@@ -85,7 +85,7 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
     idx = 0
     
     if prompt_variation == "no-persona":
-        # ✅ 페르소나 없는 조건 → 루프는 experiencer만 사용
+       
         for experiencer in experiencers:
             for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
                 idx_list.append(idx)
@@ -99,7 +99,7 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
                     experiencer=experiencer, sent=text, emotion=emotion))
                 idx += 1
     else:
-        # ✅ 기존 방식 유지
+       
         for persona in personas:
             for experiencer in experiencers:
                 for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
@@ -130,7 +130,7 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
     }).to_csv("{}/{}_{}.tsv".format(prompt_folder, group_option, prompt_variation), sep='\t', index=False)
 
 
-def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,persona_list,experinecer_list, exp_id, group_option, prompt_variation, bid, limit=6050*50):
+def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,persona_list,experinecer_list, emotion_list, exp_id, group_option, prompt_variation, bid, limit=6050*50):
     from vllm import LLM, SamplingParams
 
     # max_model_len = prompt length + output token length
@@ -154,7 +154,7 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,pers
             model=model_name,
             download_dir=os.environ['HF_HOME'],
             gpu_memory_utilization=0.8,
-            tensor_parallel_size=4,
+            tensor_parallel_size=1,
             max_model_len=2048,
             trust_remote_code=True
         )
@@ -204,6 +204,7 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,pers
         'persona' : persona_list[limit_arr[bid]:limit_arr[bid+1]],
         'experiencer' : experinecer_list[limit_arr[bid]:limit_arr[bid+1]],
         'system_prompt': system_prompts_set,
+        'emotion': emotion_list[limit_arr[bid]:limit_arr[bid+1]],
         'user_input': user_inputs_set,
         'response': [outputs[idx].outputs[0].text for idx in range(len(idx_list))]
         
@@ -223,7 +224,7 @@ def main(args):
     read_prompts = pd.read_csv(
         "{}/{}_{}.tsv".format(prompt_folder, args.group_option, args.prompt_variation), sep='\t')
     vllm_inference(args.model_name_hf, read_prompts['system_prompt'], read_prompts['user_input'],
-                   read_prompts['idx'], read_prompts['persona'], read_prompts['experiencer'],
+                   read_prompts['idx'], read_prompts['persona'], read_prompts['experiencer'], read_prompts['emotion'], 
                    args.exp_id, args.group_option, args.prompt_variation, args.batch_id)
 
     elapsed_time = time.time() - start_time
