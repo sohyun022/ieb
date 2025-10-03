@@ -164,15 +164,18 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,pers
     tot_len = len(system_prompts)
     max_limit_range = 15  # 14 * limit = 4235000
     limit_arr = [i*limit for i in range(max_limit_range) if i*limit < tot_len] + [tot_len]
-
-    os.makedirs(exp_id, exist_ok=True)
     
     # for i, l in enumerate(limit_arr[1:]):
     # if os.path.isfile(path):
     #     continue
 
     print("Range {}: {}-{}".format(bid, limit_arr[bid], limit_arr[bid+1]))
-    path = "{}/{}_{}_batch-{}.tsv".format(exp_id, group_option, prompt_variation, bid)
+
+    drive_path = "/content/drive/MyDrive/LLM_results"
+    exp_path = os.path.join(drive_path, exp_id)
+    os.makedirs(exp_path, exist_ok=True)
+
+    path = os.path.join(exp_path, f"{group_option}_{prompt_variation}_batch-{bid}.tsv")
 
     system_prompts_set = system_prompts[limit_arr[bid]:limit_arr[bid+1]]
     user_inputs_set = user_inputs[limit_arr[bid]:limit_arr[bid+1]]

@@ -73,9 +73,7 @@ crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame'
 
 # OBSERVER GROUP IDENTITY
 persona_prompt_none = ""
-
 persona_prompt_0 = "You are {persona}."
-
 persona_prompt_1 = "You are {persona}. Your responses should closely mirror the knowledge and abilities of this persona."
 persona_prompt_2 = "Adopt the identity of {persona}. Answer the questions while staying in strict accordance with the nature of this identity."
 persona_prompt_3 = "Take the role of {persona}. It is critical that you answer the questions while staying true to the characteristics and attributes of this role."
