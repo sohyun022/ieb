@@ -17,25 +17,35 @@ country_list = [
 #    "Brazil", "Argentina",
 #]
 
+# personas = [
+#     "a K-pop fan from South Korea who is a man",
+#     "a K-pop fan from Japan who is a man",
+#     "a J-pop fan from Japan who is a man",
+#     "a J-pop fan from South Korea who is a man",
+#     "a K-pop fan from South Korea who is a woman",
+#     "a K-pop fan from Japan who is a woman",
+#     "a J-pop fan from Japan who is a woman",
+#     "a J-pop fan from South Korea who is a woman"
+# ]
+
 personas = [
+    "a Person",
     "a K-pop fan from South Korea who is a man",
     "a K-pop fan from Japan who is a man",
-    "a J-pop fan from Japan who is a man",
-    "a J-pop fan from South Korea who is a man",
+    "a K-pop fan from the United States who is a man",
     "a K-pop fan from South Korea who is a woman",
-    "a K-pop fan from Japan who is a woman",
-    "a J-pop fan from Japan who is a woman",
-    "a J-pop fan from South Korea who is a woman"
+    "a K-pop fan from Japan who is a woman", 
+    "a K-pop fan from the United States who is a woman"
 ]
+
 experiencers = [
+    "a Person",
     "a K-pop fan from South Korea who is a man",
     "a K-pop fan from Japan who is a man",
-    "a J-pop fan from Japan who is a man",
-    "a J-pop fan from South Korea who is a man",
+    "a K-pop fan from the United States who is a man",
     "a K-pop fan from South Korea who is a woman",
-    "a K-pop fan from Japan who is a woman",
-    "a J-pop fan from Japan who is a woman",
-    "a J-pop fan from South Korea who is a woman"
+    "a K-pop fan from Japan who is a woman", 
+    "a K-pop fan from the United States who is a woman"
 ]
 #experiencers = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
 
@@ -67,8 +77,10 @@ experiencers = [
 #    "nationality": [f"a person from {country}" for country in country_list],
 #}
 
-crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
-                         'joy', 'pride', 'trust', 'relief', 'surprise']
+# crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
+#                          'joy', 'pride', 'trust', 'relief', 'surprise']
+
+crowd_enVent_emotions = ['anger', 'sadness', 'joy']
 
 
 # OBSERVER GROUP IDENTITY
@@ -95,8 +107,7 @@ def get_prompt_pair(prompt_variation):
         'persona-3': [system_prompt_0.format(persona_prompt=persona_prompt_3), crowd_enVent_user_input],
         '1-person': [system_prompt_0.format(persona_prompt=persona_prompt_0), crowd_enVent_user_input_1_person],
         '3-person': [system_prompt_0.format(persona_prompt=persona_prompt_0), crowd_enVent_user_input_3_person],
-        '10-scale': [system_prompt_1.format(persona_prompt=persona_prompt_0), crowd_enVent_user_input],
-        'no-persona': [system_prompt_0.format(persona_prompt=persona_prompt_none), crowd_enVent_user_input]
+        '10-scale': [system_prompt_1.format(persona_prompt=persona_prompt_0), crowd_enVent_user_input]
         }
 
     return comb_dict[prompt_variation]
