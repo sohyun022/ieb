@@ -28,25 +28,25 @@ country_list = [
 #     "a J-pop fan from South Korea who is a woman"
 # ]
 
-personas = [
-    "a Person",
-    "a K-pop fan from South Korea who is a man",
-    "a K-pop fan from Japan who is a man",
-    "a K-pop fan from the United States who is a man",
-    "a K-pop fan from South Korea who is a woman",
-    "a K-pop fan from Japan who is a woman", 
-    "a K-pop fan from the United States who is a woman"
-]
+# personas = [
+#     "a Person",
+#     "a K-pop fan from South Korea who is a man",
+#     "a K-pop fan from Japan who is a man",
+#     "a K-pop fan from the United States who is a man",
+#     "a K-pop fan from South Korea who is a woman",
+#     "a K-pop fan from Japan who is a woman", 
+#     "a K-pop fan from the United States who is a woman"
+# ]
 
-experiencers = [
-    "a Person",
-    "a K-pop fan from South Korea who is a man",
-    "a K-pop fan from Japan who is a man",
-    "a K-pop fan from the United States who is a man",
-    "a K-pop fan from South Korea who is a woman",
-    "a K-pop fan from Japan who is a woman", 
-    "a K-pop fan from the United States who is a woman"
-]
+# experiencers = [
+#     "a Person",
+#     "a K-pop fan from South Korea who is a man",
+#     "a K-pop fan from Japan who is a man",
+#     "a K-pop fan from the United States who is a man",
+#     "a K-pop fan from South Korea who is a woman",
+#     "a K-pop fan from Japan who is a woman", 
+#     "a K-pop fan from the United States who is a woman"
+# ]
 #experiencers = ["a Person","a K-pop fan","a J-pop fan", "a English pop fan", "a music listener"]
 
 #experiencers = [
@@ -66,25 +66,35 @@ experiencers = [
 #group_mappings = {
 #    "fan": [f"a K-pop fan from {country}" for country in country_list],
 #}
-#group_mappings = {
-#    "religion": ["a Christian", "a Muslim", "a Jew", "a Buddhist", "a Hindu"],
-#    "ethnicity": [
-#        "a white person", "a White person", "a Caucasian", "a White American", "a European American",
-#        "a black person", "a Black person", "an African American", "a Black American",
-#        "an Asian person", "an Asian American", "an Asian",
-#        "a Hispanic person", "a Hispanic American", "a Latino American", "a Latino", "a Latina", "a Latinx"
-#    ],
-#    "nationality": [f"a person from {country}" for country in country_list],
-#}
+
+group_mappings = {
+   
+   "fan_tenure": [
+      "1-year K-pop fan", 
+      "3-year K-pop fan", 
+      "5-year K-pop fan", 
+      "10-year K-pop fan"
+    ],
+   
+   "group_category": [
+      "a K-pop fan of a female idol group", 
+      "a K-pop fan of solo artists", 
+      "a K-pop multi-fan who supports multiple groups"
+    ],
+   
+   "contry": [
+      "a K-pop fan from South Korea",
+      "a K-pop fan from the U.S.",
+      "a K-pop fan from Japan"
+    ],
+}
 
 # crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
 #                          'joy', 'pride', 'trust', 'relief', 'surprise']
 
 crowd_enVent_emotions = ['anger', 'sadness', 'joy']
 
-
 # OBSERVER GROUP IDENTITY
-persona_prompt_none = ""
 persona_prompt_0 = "You are {persona}."
 persona_prompt_1 = "You are {persona}. Your responses should closely mirror the knowledge and abilities of this persona."
 persona_prompt_2 = "Adopt the identity of {persona}. Answer the questions while staying in strict accordance with the nature of this identity."

@@ -7,8 +7,8 @@ from sklearn.utils import resample
 import pandas as pd
 import math
 from google.colab import files
-
-from const import crowd_enVent_emotions, get_prompt_pair, personas, experiencers
+from vllm import LLM, SamplingParams
+from const import crowd_enVent_emotions, group_mappings, get_prompt_pair
 
 
 def get_experiment_configs():
@@ -22,7 +22,7 @@ def get_experiment_configs():
                             'Qwen/Qwen2-7B-Instruct'
                         ])
     parser.add_argument("--exp_id", type=str)
-    parser.add_argument("--group_option", type=str, choices=['fan'])
+    parser.add_argument("--group_option", type=str, choices=['fan_tenure','group_category','contry'])
     parser.add_argument("--prompt_variation", type=str,
                         choices=['origin', 'persona-1', 'persona-2', 'persona-3',
                                  '1-person', '3-person', '10-scale', 'no-persona'])
@@ -51,7 +51,9 @@ def read_all_data(prompt_variation='origin'):
             'emotion_list': concat_df['emotion']}
 
 
-def prepare_prompts(data, prompt_variation, group_option,personas, experiencers):
+def prepare_prompts(data, prompt_variation, group_option):
+
+    persona_group = group_mappings[group_option] + ['a person']
     system_prompt, user_input = get_prompt_pair(prompt_variation)
 
     # idx, persona, experiencer, emotion, oid, text, system_prompt, user_input
@@ -66,10 +68,8 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
 
     idx = 0
     
-   
-       
-    for persona in personas:
-        for experiencer in experiencers:
+    for persona in tqdm(persona_group):
+        for experiencer in persona_group:
             for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
                 idx_list.append(idx)
                 persona_list.append(persona)
@@ -77,33 +77,35 @@ def prepare_prompts(data, prompt_variation, group_option,personas, experiencers)
                 emotion_list.append(emotion)
                 oid_list.append(oid)
                 text_list.append(text)
-                system_prompt_list.append(system_prompt.format(persona=persona))
+                system_prompt_list.append(
+                    system_prompt.format(persona=persona))
                 user_input_list.append(user_input.format(
                     experiencer=experiencer, sent=text, emotion=emotion))
                 idx += 1
 
     prompt_folder = 'prompts'
-
     os.makedirs(prompt_folder, exist_ok=True)
 
-    return pd.DataFrame({
+    df = pd.DataFrame({
         'idx': idx_list,
-        'persona': persona_list,
+        'perceiver': persona_list,
         'experiencer': experiencer_list,
         'emotion': emotion_list,
         'oid': oid_list,
         'text': text_list,
         'system_prompt': system_prompt_list,
         'user_input': user_input_list
-    }).to_csv("{}/{}_{}.tsv".format(prompt_folder, group_option, prompt_variation), sep='\t', index=False)
+    })
+    
+    save_path = f"{prompt_folder}/{group_option}_{prompt_variation}.tsv"
+    df.to_csv(save_path, sep='\t', index=False)
+    print(f"Prompts saved at: {save_path}")
 
+    return df
 
 def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,
-                   persona_list, experiencer_list, emotion_list,
+                   perceiver_list, experiencer_list, emotion_list,
                    exp_id, group_option, prompt_variation, bid, limit=6050*50):
-    from vllm import LLM, SamplingParams
-    import os
-    import pandas as pd
 
     # 모델 로드
     if '70B' in model_name:
@@ -149,8 +151,8 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,
 
 
     # 결과 경로 준비
-    drive_path = "/content"
-    exp_path = os.path.join(drive_path, exp_id)
+    conten_path = "/content"
+    exp_path = os.path.join(content_path, exp_id)
     os.makedirs(exp_path, exist_ok=True)
     path = os.path.join(exp_path, f"{group_option}_{prompt_variation}_batch-{bid}.tsv")
 
@@ -197,7 +199,7 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,
     # 결과 저장
     df = pd.DataFrame({
         'idx': idx_list,
-        'persona': persona_list[start:end],
+        'perceiver': perceiver_list[start:end],
         'experiencer': experiencer_list[start:end],
         'system_prompt': system_prompts_set,
         'emotion': emotion_list[start:end],
@@ -208,8 +210,6 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,
     df.to_csv(path, sep='\t', index=False)
     print(f"Saved: {path} ({len(df)} rows)")
 
-    files.download(path)
-
     return df
 
 def main(args):
@@ -218,15 +218,23 @@ def main(args):
 
     # Read data and prepare prompts
     data = read_all_data(args.prompt_variation)
-    prepare_prompts(data, args.prompt_variation, args.group_option,personas, experiencers)
-
     # Read prompts and model inference
     prompt_folder = 'prompts'
-    read_prompts = pd.read_csv(
-        "{}/{}_{}.tsv".format(prompt_folder, args.group_option, args.prompt_variation), sep='\t')
-    vllm_inference(args.model_name_hf, read_prompts['system_prompt'], read_prompts['user_input'],
-                   read_prompts['idx'], read_prompts['persona'], read_prompts['experiencer'], read_prompts['emotion'], 
-                   args.exp_id, args.group_option, args.prompt_variation, args.batch_id)
+    read_prompts = prepare_prompts(data, args.prompt_variation, args.group_option)
+
+    vllm_inference(
+        args.model_name_hf,
+        read_prompts['system_prompt'],
+        read_prompts['user_input'],
+        read_prompts['idx'],
+        read_prompts['perceiver'],
+        read_prompts['experiencer'],
+        read_prompts['emotion'],
+        args.exp_id,
+        args.group_option,
+        args.prompt_variation,
+        args.batch_id
+    )
 
     elapsed_time = time.time() - start_time
     print("[Used time] {:.4f} minutes".format(elapsed_time / 60))
