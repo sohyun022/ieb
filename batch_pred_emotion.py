@@ -151,7 +151,7 @@ def vllm_inference(model_name, system_prompts, user_inputs, prompt_idx_list,
 
 
     # 결과 경로 준비
-    conten_path = "/content"
+    content_path = "/content"
     exp_path = os.path.join(content_path, exp_id)
     os.makedirs(exp_path, exist_ok=True)
     path = os.path.join(exp_path, f"{group_option}_{prompt_variation}_batch-{bid}.tsv")
