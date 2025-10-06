@@ -70,10 +70,15 @@ country_list = [
 group_mappings = {
    
    "fan_tenure": [
-      "1-year K-pop fan", 
-      "3-year K-pop fan", 
-      "5-year K-pop fan", 
-      "10-year K-pop fan"
+      # "1-year K-pop fan", 
+      # "3-year K-pop fan", 
+      # "5-year K-pop fan", 
+      # "10-year K-pop fan"
+      "1년차 팬", 
+      "3년차 팬", 
+      "5년차 팬", 
+      "10년차 팬"
+    
     ],
    
    "group_category": [
