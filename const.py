@@ -69,29 +69,43 @@ country_list = [
 
 group_mappings = {
    
-   "fan_tenure": [
-      # "1-year K-pop fan", 
-      # "3-year K-pop fan", 
-      # "5-year K-pop fan", 
-      # "10-year K-pop fan"
-      "1년차 팬", 
-      "3년차 팬", 
-      "5년차 팬", 
-      "10년차 팬"
-    
+   "fan_tenure_eng": [
+      "1-year K-pop fan", 
+      "3-year K-pop fan", 
+      "5-year K-pop fan", 
+      "10-year K-pop fan"
+    ],
+
+    "fan_tenure_kor": [
+      "1년차 K-pop 팬", 
+      "3년차 K-pop 팬", 
+      "5년차 K-pop 팬", 
+      "10년차 K-pop 팬"
     ],
    
-   "group_category": [
+   "group_category_eng": [
       "a K-pop fan of a female idol group", 
       "a K-pop fan of solo artists", 
       "a K-pop multi-fan who supports multiple groups"
     ],
+
+    "group_category_kor": [
+      "여자 아이돌 그룹을 좋아하는 K-pop 팬",
+      "남자 아이돌 그룹을 좋아하는 K-pop 팬",
+      "여러 아이돌 그룹을 좋아하는 K-pop 팬"
+    ],
    
-   "contry": [
+   "contry_eng": [
       "a K-pop fan from South Korea",
       "a K-pop fan from the U.S.",
       "a K-pop fan from Japan"
     ],
+
+    "contry_kor": [
+      "한국 K-pop 팬",
+      "미국 K-pop 팬",
+      "일본 K-pop 팬"
+    ]
 }
 
 # crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',

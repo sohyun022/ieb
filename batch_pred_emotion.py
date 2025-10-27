@@ -15,14 +15,14 @@ def get_experiment_configs():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name_hf", type=str,
                         choices=[
-                            'meta-llama/Meta-Llama-3.1-8B-Instruct',
+                            'meta-llama/Llama-3.1-8B-Instruct',
                             'LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct',
                             'meta-llama/Meta-Llama-3.1-70B-Instruct',
                             'mistralai/Mistral-7B-Instruct-v0.3',
                             'Qwen/Qwen2-7B-Instruct'
                         ])
     parser.add_argument("--exp_id", type=str)
-    parser.add_argument("--group_option", type=str, choices=['fan_tenure','group_category','contry'])
+    parser.add_argument("--group_option", type=str, choices=['fan_tenure_kor','fan_tenure_eng','group_category','contry'])
     parser.add_argument("--prompt_variation", type=str,
                         choices=['origin', 'persona-1', 'persona-2', 'persona-3',
                                  '1-person', '3-person', '10-scale', 'no-persona'])
