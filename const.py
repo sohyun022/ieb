@@ -105,13 +105,16 @@ group_mappings = {
       "한국 K-pop 팬",
       "미국 K-pop 팬",
       "일본 K-pop 팬"
-    ]
+    ],
+
+    "contry":["Russia", "Ukraine"]
+
 }
 
 # crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
 #                          'joy', 'pride', 'trust', 'relief', 'surprise']
 
-crowd_enVent_emotions = ['anger', 'sadness', 'joy']
+crowd_enVent_emotions = ['anger', 'sadness', 'joy','disgust', 'fear', 'guilt']
 
 # OBSERVER GROUP IDENTITY
 persona_prompt_0 = "You are {persona}."
