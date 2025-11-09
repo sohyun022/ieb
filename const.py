@@ -68,7 +68,47 @@ country_list = [
 #}
 
 group_mappings = {
-   
+
+
+   "KBO_fan": [
+      "Doosan Bears",
+      "Hanwha Eagles",
+      "KIA Tigers",
+      # "Kiwoom Heroes",
+      "KT Wiz",
+      "LG Twins",
+      # "Lotte Giants",
+      # "NC Dinos",
+      # "Samsung Lions",
+      # "SSG Landers"
+    ],
+
+    "KBO_fan_details": [
+      # "a core fan of the Doosan Bears",
+      # "a light fan of the Doosan Bears",
+
+      "a core fan of the Hanwha Eagles",
+      "a light fan of the Hanwha Eagles",
+
+      "a core fan of the KIA Tigers",
+      "a light fan of the KIA Tigers",
+     
+      # "a core fan of the KT Wiz",
+      # "a light fan of the KT Wiz",
+
+      # "a core fan of the LG Twins",
+      # "a light fan of the LG Twins",
+
+      "a core fan of the Lotte Giants",
+      "a light fan of the Lotte Giants"
+
+      # "Kiwoom Heroes",
+      # "NC Dinos",
+      # "a core fan of the Samsung Lions",
+      # "a light fan of the Samsung Lions",
+      # "SSG Landers"
+    ],
+      
    "fan_tenure_eng": [
       "1-year K-pop fan", 
       "3-year K-pop fan", 
@@ -114,10 +154,10 @@ group_mappings = {
 # crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
 #                          'joy', 'pride', 'trust', 'relief', 'surprise']
 
-crowd_enVent_emotions = ['anger', 'sadness', 'joy','disgust', 'fear', 'guilt']
+crowd_enVent_emotions = ['anger', 'joy', 'sadness']
 
 # OBSERVER GROUP IDENTITY
-persona_prompt_0 = "You are {persona}."
+persona_prompt_0 = "You are {persona}, a professional baseball team in South Korea."
 persona_prompt_1 = "You are {persona}. Your responses should closely mirror the knowledge and abilities of this persona."
 persona_prompt_2 = "Adopt the identity of {persona}. Answer the questions while staying in strict accordance with the nature of this identity."
 persona_prompt_3 = "Take the role of {persona}. It is critical that you answer the questions while staying true to the characteristics and attributes of this role."
@@ -129,7 +169,7 @@ system_prompt_1 = "{persona_prompt}Your task is to rate the intensity of the emo
 crowd_enVent_user_input_1_person = "The following narrative is shared by {experiencer}.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
 crowd_enVent_user_input_3_person = "The following narrative is shared by {experiencer} and reframed in the third-person perspective.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
 # Suggested: “In the following narrative, a(n) {experiencer} describes a situation in which they felt(/experienced) {emotion}.“
-crowd_enVent_user_input = "In the following narrative, {experiencer} describes a situation in which they felt {emotion}.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
+crowd_enVent_user_input = "In the following narrative, a fan of the {experiencer} describes a situation in which they felt {emotion}.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
 
 def get_prompt_pair(prompt_variation):
     comb_dict = {
