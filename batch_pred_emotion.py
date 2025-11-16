@@ -22,7 +22,7 @@ def get_experiment_configs():
                             'Qwen/Qwen2-7B-Instruct'
                         ])
     parser.add_argument("--exp_id", type=str)
-    parser.add_argument("--group_option", type=str, choices=['fan_tenure_kor','fan_tenure_eng','group_category','contry','KBO_fan','KBO_fan_details'])
+    parser.add_argument("--group_option", type=str, choices=['KBO_fan','MLB_fan'])
     parser.add_argument("--prompt_variation", type=str,
                         choices=['origin', 'persona-1', 'persona-2', 'persona-3',
                                  '1-person', '3-person', '10-scale', 'no-persona'])

@@ -69,85 +69,52 @@ country_list = [
 
 group_mappings = {
 
+    "MLB_fan": [
+    # "Arizona Diamondbacks",
+    # "Atlanta Braves",
+    # "Baltimore Orioles",
+    # "Boston Red Sox",
+    # "Chicago Cubs",
+    "Chicago White Sox",
+    # "Cincinnati Reds",
+    # "Cleveland Guardians",
+    # "Colorado Rockies",
+    # "Detroit Tigers",
+    # "Houston Astros",
+    # "Kansas City Royals",
+    # "Los Angeles Angels",
+    "Los Angeles Dodgers",
+    "Miami Marlins",
+    # "Milwaukee Brewers",
+    # "Minnesota Twins",
+    "New York Mets",
+    "New York Yankees",
+    "Oakland Athletics",
+    "Philadelphia Phillies",
+    "Pittsburgh Pirates",
+    "San Diego Padres",
+    # "San Francisco Giants",
+    # "Seattle Mariners",
+    # "St. Louis Cardinals",
+    "Tampa Bay Rays",
+    # "Texas Rangers",
+    # "Toronto Blue Jays",
+    # "Washington Nationals"
+    ],
+
 
    "KBO_fan": [
       "Doosan Bears",
       "Hanwha Eagles",
       "KIA Tigers",
-      # "Kiwoom Heroes",
+      "Kiwoom Heroes",
       "KT Wiz",
       "LG Twins",
-      # "Lotte Giants",
-      # "NC Dinos",
-      # "Samsung Lions",
-      # "SSG Landers"
+      "Lotte Giants",
+      "NC Dinos",
+      "Samsung Lions",
+      "SSG Landers"
     ],
-
-    "KBO_fan_details": [
-      # "a core fan of the Doosan Bears",
-      # "a light fan of the Doosan Bears",
-
-      "a core fan of the Hanwha Eagles",
-      "a light fan of the Hanwha Eagles",
-
-      "a core fan of the KIA Tigers",
-      "a light fan of the KIA Tigers",
-     
-      # "a core fan of the KT Wiz",
-      # "a light fan of the KT Wiz",
-
-      # "a core fan of the LG Twins",
-      # "a light fan of the LG Twins",
-
-      "a core fan of the Lotte Giants",
-      "a light fan of the Lotte Giants"
-
-      # "Kiwoom Heroes",
-      # "NC Dinos",
-      # "a core fan of the Samsung Lions",
-      # "a light fan of the Samsung Lions",
-      # "SSG Landers"
-    ],
-      
-   "fan_tenure_eng": [
-      "1-year K-pop fan", 
-      "3-year K-pop fan", 
-      "5-year K-pop fan", 
-      "10-year K-pop fan"
-    ],
-
-    "fan_tenure_kor": [
-      "1년차 K-pop 팬", 
-      "3년차 K-pop 팬", 
-      "5년차 K-pop 팬", 
-      "10년차 K-pop 팬"
-    ],
-   
-   "group_category_eng": [
-      "a K-pop fan of a female idol group", 
-      "a K-pop fan of solo artists", 
-      "a K-pop multi-fan who supports multiple groups"
-    ],
-
-    "group_category_kor": [
-      "여자 아이돌 그룹을 좋아하는 K-pop 팬",
-      "남자 아이돌 그룹을 좋아하는 K-pop 팬",
-      "여러 아이돌 그룹을 좋아하는 K-pop 팬"
-    ],
-   
-   "contry_eng": [
-      "a K-pop fan from South Korea",
-      "a K-pop fan from the U.S.",
-      "a K-pop fan from Japan"
-    ],
-
-    "contry_kor": [
-      "한국 K-pop 팬",
-      "미국 K-pop 팬",
-      "일본 K-pop 팬"
-    ],
-
-    "contry":["Russia", "Ukraine"]
 
 }
 
@@ -157,7 +124,7 @@ group_mappings = {
 crowd_enVent_emotions = ['anger', 'joy', 'sadness']
 
 # OBSERVER GROUP IDENTITY
-persona_prompt_0 = "You are {persona}, a professional baseball team in South Korea."
+persona_prompt_0 = "You are a fan of the {persona}."
 persona_prompt_1 = "You are {persona}. Your responses should closely mirror the knowledge and abilities of this persona."
 persona_prompt_2 = "Adopt the identity of {persona}. Answer the questions while staying in strict accordance with the nature of this identity."
 persona_prompt_3 = "Take the role of {persona}. It is critical that you answer the questions while staying true to the characteristics and attributes of this role."
