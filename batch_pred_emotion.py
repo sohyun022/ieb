@@ -22,7 +22,7 @@ def get_experiment_configs():
                             'Qwen/Qwen2-7B-Instruct'
                         ])
     parser.add_argument("--exp_id", type=str)
-    parser.add_argument("--group_option", type=str, choices=['KBO_fan','MLB_fan','KBO_local'])
+    parser.add_argument("--group_option", type=str, choices=['KBO_fan','MLB_fan','KBO_local','MLB_local'])
     parser.add_argument("--prompt_variation", type=str,
                         choices=['origin', 'persona-1', 'persona-2', 'persona-3',
                                  '1-person', '3-person', '10-scale', 'no-persona'])
@@ -71,6 +71,10 @@ def prepare_prompts(data, prompt_variation, group_option):
     if(group_option=='KBO_fan'):
         persona_group = group_mappings['KBO_local'] + ['a person']
         experiencer_group = group_mappings['KBO_fan'] + ['a person']
+    
+    elif(group_option=='MLB_local'):
+        persona_group = group_mappings['MLB_local_per'] 
+        experiencer_group = group_mappings['MLB_local_exp'] 
 
     else:
         persona_group, experiencer_group = group_mappings[group_option] + ['a person']
