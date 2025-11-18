@@ -22,7 +22,7 @@ def get_experiment_configs():
                             'Qwen/Qwen2-7B-Instruct'
                         ])
     parser.add_argument("--exp_id", type=str)
-    parser.add_argument("--group_option", type=str, choices=['KBO_fan','MLB_fan'])
+    parser.add_argument("--group_option", type=str, choices=['KBO_fan','MLB_fan','KBO_local'])
     parser.add_argument("--prompt_variation", type=str,
                         choices=['origin', 'persona-1', 'persona-2', 'persona-3',
                                  '1-person', '3-person', '10-scale', 'no-persona'])
@@ -53,9 +53,6 @@ def read_all_data(prompt_variation='origin'):
 
 def prepare_prompts(data, prompt_variation, group_option):
 
-    persona_group = group_mappings[group_option] + ['a person']
-    system_prompt, user_input = get_prompt_pair(prompt_variation)
-
     # idx, persona, experiencer, emotion, oid, text, system_prompt, user_input
     idx_list = []
     persona_list = []
@@ -67,9 +64,22 @@ def prepare_prompts(data, prompt_variation, group_option):
     user_input_list = []
 
     idx = 0
+
+    persona_group=[]
+    experiencer_group=[]
+
+    if(group_option=='KBO_fan'):
+        persona_group = group_mappings['KBO_local'] + ['a person']
+        experiencer_group = group_mappings['KBO_fan'] + ['a person']
+
+    else:
+        persona_group, experiencer_group = group_mappings[group_option] + ['a person']
     
+
+    system_prompt, user_input = get_prompt_pair(prompt_variation)
+
     for persona in tqdm(persona_group):
-        for experiencer in persona_group:
+        for experiencer in experiencer_group:
             for emotion, text, oid in zip(data['emotion_list'], data['text_list'], data['id_list']):
                 idx_list.append(idx)
                 persona_list.append(persona)
@@ -242,3 +252,4 @@ def main(args):
 
 if __name__ == '__main__':
     main(get_experiment_configs())
+

@@ -70,40 +70,57 @@ country_list = [
 group_mappings = {
 
     "MLB_fan": [
-    # "Arizona Diamondbacks",
-    # "Atlanta Braves",
-    # "Baltimore Orioles",
-    # "Boston Red Sox",
-    # "Chicago Cubs",
-    "Chicago White Sox",
-    # "Cincinnati Reds",
-    # "Cleveland Guardians",
-    # "Colorado Rockies",
-    # "Detroit Tigers",
-    # "Houston Astros",
-    # "Kansas City Royals",
-    # "Los Angeles Angels",
-    "Los Angeles Dodgers",
-    "Miami Marlins",
-    # "Milwaukee Brewers",
-    # "Minnesota Twins",
-    "New York Mets",
-    "New York Yankees",
-    "Oakland Athletics",
-    "Philadelphia Phillies",
-    "Pittsburgh Pirates",
-    "San Diego Padres",
-    # "San Francisco Giants",
-    # "Seattle Mariners",
-    # "St. Louis Cardinals",
-    "Tampa Bay Rays",
-    # "Texas Rangers",
-    # "Toronto Blue Jays",
-    # "Washington Nationals"
-    ],
+      "Arizona Diamondbacks",
+      "Atlanta Braves",
+      "Baltimore Orioles",
+      "Boston Red Sox",
+      "Chicago Cubs",
+      "Chicago White Sox",
+      "Cincinnati Reds",
+      "Cleveland Guardians",
+      "Colorado Rockies",
+      "Detroit Tigers",
+      "Houston Astros",
+      "Kansas City Royals",
+      "Los Angeles Angels",
+      "Los Angeles Dodgers",
+      "Miami Marlins",
+      "Milwaukee Brewers",
+      "Minnesota Twins",
+      "New York Mets",
+      "New York Yankees",
+      "Oakland Athletics",
+      "Philadelphia Phillies",
+      "Pittsburgh Pirates",
+      "San Diego Padres",
+      "San Francisco Giants",
+      "Seattle Mariners",
+      "St. Louis Cardinals",
+      "Tampa Bay Rays",
+      "Texas Rangers",
+      "Toronto Blue Jays",
+      "Washington Nationals"
+      ],
 
+    "NPB_fan": [
+      #  센트럴 리그 (Central League)
+      "Yomiuri Giants",
+      "Yokohama DeNA BayStars",
+      "Hanshin Tigers",
+      "Hiroshima Toyo Carp",
+      "Chunichi Dragons",
+      "Tokyo Yakult Swallows",
+      
+      # 퍼시픽 리그 (Pacific League)
+      "Fukuoka SoftBank Hawks",
+      "Chiba Lotte Marines",
+      "Saitama Seibu Lions",
+      "Tohoku Rakuten Golden Eagles",
+      "Hokkaido Nippon-Ham Fighters",
+      "Orix Buffaloes"
+    ], 
 
-   "KBO_fan": [
+    "KBO_fan": [
       "Doosan Bears",
       "Hanwha Eagles",
       "KIA Tigers",
@@ -116,6 +133,19 @@ group_mappings = {
       "SSG Landers"
     ],
 
+    "KBO_local": [
+      "Jamsil, Seoul", 
+      "Daejeon",
+      "Gwangju", 
+      "Gocheok, Seoul", 
+      "Suwon", 
+      "Jamsil, Seoul", 
+      "Busan", 
+      "Changwon", 
+      "Daegu", 
+      "Incheon" 
+   ]
+
 }
 
 # crowd_enVent_emotions = ['anger', 'disgust', 'fear', 'guilt', 'sadness', 'shame', 'boredom',
@@ -124,7 +154,7 @@ group_mappings = {
 crowd_enVent_emotions = ['anger', 'joy', 'sadness']
 
 # OBSERVER GROUP IDENTITY
-persona_prompt_0 = "You are a fan of the {persona}."
+persona_prompt_0 = "You are a person from {persona}."
 persona_prompt_1 = "You are {persona}. Your responses should closely mirror the knowledge and abilities of this persona."
 persona_prompt_2 = "Adopt the identity of {persona}. Answer the questions while staying in strict accordance with the nature of this identity."
 persona_prompt_3 = "Take the role of {persona}. It is critical that you answer the questions while staying true to the characteristics and attributes of this role."
@@ -136,7 +166,7 @@ system_prompt_1 = "{persona_prompt}Your task is to rate the intensity of the emo
 crowd_enVent_user_input_1_person = "The following narrative is shared by {experiencer}.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
 crowd_enVent_user_input_3_person = "The following narrative is shared by {experiencer} and reframed in the third-person perspective.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
 # Suggested: “In the following narrative, a(n) {experiencer} describes a situation in which they felt(/experienced) {emotion}.“
-crowd_enVent_user_input = "In the following narrative, a fan of the {experiencer} describes a situation in which they felt {emotion}.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
+crowd_enVent_user_input = "In the following narrative, the {experiencer} describes a situation in which they felt {emotion}.\n\"{sent}\"\nHow much {emotion} did the person feel while experiencing the event?\nEmotion intensity:"
 
 def get_prompt_pair(prompt_variation):
     comb_dict = {
