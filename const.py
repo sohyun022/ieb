@@ -70,36 +70,40 @@ country_list = [
 group_mappings = {
 
     "MLB_fan": [
-      "Arizona Diamondbacks",
-      "Atlanta Braves",
-      "Baltimore Orioles",
-      "Boston Red Sox",
-      "Chicago Cubs",
-      "Chicago White Sox",
-      "Cincinnati Reds",
-      "Cleveland Guardians",
-      "Colorado Rockies",
-      "Detroit Tigers",
-      "Houston Astros",
-      "Kansas City Royals",
-      "Los Angeles Angels",
+      # top 5
       "Los Angeles Dodgers",
-      "Miami Marlins",
-      "Milwaukee Brewers",
-      "Minnesota Twins",
-      "New York Mets",
       "New York Yankees",
-      "Oakland Athletics",
-      "Philadelphia Phillies",
-      "Pittsburgh Pirates",
       "San Diego Padres",
-      "San Francisco Giants",
-      "Seattle Mariners",
       "St. Louis Cardinals",
+      "Atlanta Braves",
+      
+      # bottom 5
+      "Pittsburgh Pirates",
       "Tampa Bay Rays",
-      "Texas Rangers",
-      "Toronto Blue Jays",
-      "Washington Nationals"
+      "Kansas City Royals",
+      "Miami Marlins",
+      "Oakland Athletics",
+  
+      # "Texas Rangers",
+      # "Toronto Blue Jays",
+      # "Washington Nationals",
+      # "San Francisco Giants",
+      # "Seattle Mariners",
+      # "Philadelphia Phillies",
+      # "Milwaukee Brewers",
+      # "Minnesota Twins",
+      # "New York Mets",
+      # "Los Angeles Angels",
+      # "Baltimore Orioles",
+      # "Boston Red Sox",
+      # "Chicago Cubs",
+      # "Chicago White Sox",
+      # "Cincinnati Reds",
+      # "Cleveland Guardians",
+      # "Colorado Rockies",
+      # "Detroit Tigers",
+      # "Houston Astros",
+      # "Arizona Diamondbacks",
       ],
 
     "MLB_local_per" : 
@@ -154,7 +158,7 @@ group_mappings = {
 crowd_enVent_emotions = ['anger', 'joy', 'sadness']
 
 # OBSERVER GROUP IDENTITY
-persona_prompt_0 = "You are a fan of the KBO baseball team in {persona}."
+persona_prompt_0 = "You are a fan of the {persona}."
 persona_prompt_1 = "You are {persona}. Your responses should closely mirror the knowledge and abilities of this persona."
 persona_prompt_2 = "Adopt the identity of {persona}. Answer the questions while staying in strict accordance with the nature of this identity."
 persona_prompt_3 = "Take the role of {persona}. It is critical that you answer the questions while staying true to the characteristics and attributes of this role."

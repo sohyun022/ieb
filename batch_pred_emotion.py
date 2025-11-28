@@ -77,7 +77,8 @@ def prepare_prompts(data, prompt_variation, group_option):
         experiencer_group = group_mappings['MLB_local_exp'] 
 
     else:
-        persona_group, experiencer_group = group_mappings[group_option] + ['a person']
+        persona_group= group_mappings[group_option] + ['a person']
+        experiencer_group = group_mappings[group_option] + ['a person']
     
 
     system_prompt, user_input = get_prompt_pair(prompt_variation)
